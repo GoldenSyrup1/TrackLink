@@ -1,0 +1,7 @@
+{
+  "database": "dolt",
+  "backend": "dolt",
+  "dolt_mode": "server",
+  "dolt_database": "TrackLink",
+  "project_id": "9fcd634b-d42c-494f-92ee-b21967701910"
+}
