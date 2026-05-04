@@ -49,7 +49,7 @@ class Settings(BaseSettings):
     scraper_delay_max_ms: int = 3000
     scraper_max_retries: int = 3
     # Rotate browser context after this many requests (0 = never)
-    scraper_context_rotate_after: int = 20
+    scraper_context_rotate_after: int = 50
 
     # mTLS (internal service-to-service)
     mtls_ca_cert: str = "/etc/tracklink/certs/ca.crt"

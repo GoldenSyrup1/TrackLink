@@ -1,8 +1,8 @@
 """
 TrackLink FastAPI application entry point.
 
-Lifespan: initialises Postgres tables, Qdrant collections, Redis pool on
-startup; disposes connections on shutdown.
+Lifespan: initialises tracing, Postgres tables, Qdrant collections, Redis
+pool on startup; flushes spans and disposes connections on shutdown.
 All routes are async. No sync route handlers anywhere.
 """
 from __future__ import annotations
@@ -13,17 +13,22 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from api.routes import persons, relationships, search, startups
+from auth.audit import AuditMiddleware
 from infra.postgres.session import create_tables, dispose_engine
 from infra.qdrant.client import close_qdrant, init_collections
 from infra.redis.streams import close_redis
+from observability.metrics import setup_metrics
+from observability.tracing import setup_tracing, shutdown_tracing
 from shared.config import settings
 
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
+    setup_tracing()
     await create_tables()
     await init_collections()
     yield
+    shutdown_tracing()
     await dispose_engine()
     await close_qdrant()
     await close_redis()
@@ -42,6 +47,8 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+app.add_middleware(AuditMiddleware)
+setup_metrics(app)
 
 app.include_router(persons.router, prefix="/persons", tags=["persons"])
 app.include_router(startups.router, prefix="/startups", tags=["startups"])
