@@ -72,7 +72,7 @@ async def init_collections() -> None:
     exist.  Safe to call repeatedly — existing collections are left untouched.
     """
     client = get_qdrant()
-    existing = {c.name for c in await client.get_collections()}
+    existing = {c.name for c in (await client.get_collections()).collections}
 
     for name, vector_params in _COLLECTIONS.items():
         if name in existing:
