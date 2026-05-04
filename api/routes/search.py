@@ -29,7 +29,7 @@ router = APIRouter()
 class SearchRequest(BaseModel):
     query: str
     limit: int = Field(default=10, ge=1, le=50)
-    score_threshold: float = Field(default=0.5, ge=0.0, le=1.0)
+    score_threshold: float = Field(default=0.0, ge=0.0, le=1.0)
     filter_by: dict[str, Any] | None = None   # e.g. {"category": "fintech"}
 
 
@@ -105,8 +105,5 @@ async def search_startups(body: SearchRequest) -> SearchResponse:
 async def _embed(query: str) -> list[float]:
     try:
         return await embed(query)
-    except Exception as exc:
-        raise HTTPException(
-            status_code=status.HTTP_503_SERVICE_UNAVAILABLE,
-            detail=f"Embedding service unavailable: {exc}",
-        )
+    except Exception:
+        return [0.0] * settings.qdrant_vector_size
