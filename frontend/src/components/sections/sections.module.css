@@ -1,0 +1,140 @@
+/* Shared styles for all section components */
+
+.empty {
+  color: var(--text-muted);
+  font-size: 13px;
+  font-style: italic;
+}
+.centred { display: flex; justify-content: center; padding: 24px; }
+.errorMsg { color: var(--red); font-size: 12px; }
+
+/* ── Timeline (WorkHistory) ─────────────────────────────────── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+
+.timelineItem {
+  display: flex;
+  gap: 14px;
+  position: relative;
+  padding-bottom: 20px;
+}
+.timelineItem:last-child { padding-bottom: 0; }
+
+.timelineDot {
+  flex-shrink: 0;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--accent);
+  border: 2px solid var(--bg-card);
+  margin-top: 4px;
+  position: relative;
+  z-index: 1;
+}
+.timelineLine {
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: 0;
+  width: 2px;
+  background: var(--border);
+}
+
+.timelineContent { flex: 1; min-width: 0; }
+.timelineTitle   { font-size: 13px; font-weight: 600; color: var(--text-primary); }
+.timelineCompany { font-size: 12px; color: var(--text-accent); margin-top: 1px; }
+.timelineDates   { font-size: 11px; color: var(--text-muted); margin-top: 2px; font-family: var(--font-mono); }
+.timelineDesc    { font-size: 12px; color: var(--text-secondary); margin-top: 6px; line-height: 1.5; }
+
+/* ── Bio block ──────────────────────────────────────────────── */
+.bioBlock { margin-top: 8px; }
+.bio      { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-top: 4px; }
+
+/* ── Field label ────────────────────────────────────────────── */
+.fieldLabel {
+  display: block;
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  margin-bottom: 4px;
+}
+
+/* ── GitHub ─────────────────────────────────────────────────── */
+.langDot {
+  display: inline-block;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.repoList { display: flex; flex-direction: column; gap: 4px; }
+.repoItem { display: flex; align-items: center; gap: 8px; }
+.repoIcon { color: var(--text-muted); font-size: 13px; }
+.repoName { font-family: var(--font-mono); font-size: 12px; color: var(--text-secondary); }
+
+/* ── Relationships ──────────────────────────────────────────── */
+.relList { display: flex; flex-direction: column; gap: 12px; }
+.relItem {
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.relKind  { font-size: 12px; font-weight: 600; color: var(--text-primary); }
+.relId    { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); }
+.strengthVal { font-family: var(--font-mono); font-size: 11px; color: var(--text-secondary); min-width: 30px; text-align: right; }
+
+/* ── Trajectory breakdown ───────────────────────────────────── */
+.scoreTable { display: flex; flex-direction: column; gap: 10px; margin-bottom: 16px; }
+.scoreRow { display: flex; align-items: center; gap: 10px; }
+.scoreLabel { font-size: 12px; color: var(--text-secondary); width: 140px; flex-shrink: 0; }
+.scoreVal   { font-family: var(--font-mono); font-size: 12px; color: var(--text-muted); width: 36px; text-align: right; flex-shrink: 0; }
+
+.rationaleBlock { margin-top: 4px; }
+.rationale {
+  font-size: 13px;
+  color: var(--text-secondary);
+  font-style: italic;
+  line-height: 1.6;
+  margin-top: 4px;
+  border-left: 2px solid var(--border-light);
+  padding-left: 10px;
+}
+.scoredAt { font-size: 11px; color: var(--text-muted); margin-top: 10px; font-family: var(--font-mono); }
+
+/* ── Raw signals ────────────────────────────────────────────── */
+.rawHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.copyBtn {
+  background: var(--bg-input);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  color: var(--text-secondary);
+  font-size: 11px;
+  padding: 3px 8px;
+  cursor: pointer;
+  transition: color 0.15s, border-color 0.15s;
+}
+.copyBtn:hover { color: var(--text-primary); border-color: var(--border-light); }
+
+.rawPre {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--text-secondary);
+  background: var(--bg-panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 12px;
+  overflow-x: auto;
+  max-height: 400px;
+  overflow-y: auto;
+  line-height: 1.6;
+  white-space: pre;
+}

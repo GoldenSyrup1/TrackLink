@@ -1,0 +1,49 @@
+.section {
+  border-bottom: 1px solid var(--border);
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 24px;
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s, color 0.1s;
+}
+.header:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.title { flex: 1; }
+
+.chevron {
+  font-size: 16px;
+  color: var(--text-muted);
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.chevronOpen {
+  transform: rotate(90deg);
+  color: var(--accent);
+}
+
+.body {
+  padding: 16px 24px 20px;
+  background: var(--bg-card);
+  border-top: 1px solid var(--border);
+}
