@@ -155,15 +155,14 @@ async def search(
             ]
         )
 
-    results: list[ScoredPoint] = await client.search(
-        collection_name=collection,
-        query_vector=query_vector,
-        limit=limit,
-        score_threshold=score_threshold,
-        query_filter=qdrant_filter,
-        with_payload=True,
-    )
-    return results
+    results = await client.query_points(
+    collection_name=collection,
+    query=query_vector,
+    limit=limit,
+    score_threshold=score_threshold,
+    query_filter=qdrant_filter,
+    with_payload=True,)
+    return results.points
 
 
 async def get_by_id(collection: str, entity_id: uuid.UUID) -> PointStruct | None:
